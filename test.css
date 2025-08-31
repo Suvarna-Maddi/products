@@ -52,6 +52,7 @@ body {
   letter-spacing: 1px;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
   transition: transform 0.4s ease, text-shadow 0.4s ease;
+right-margin:70px;
 }
 .brand:hover {
   transform: scale(1.05);
