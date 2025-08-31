@@ -1,0 +1,590 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f0fdf4;
+}
+
+/* NAVBAR BASE */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #4ade80, #15803d, #065f46);
+  background-size: 300% 300%;
+  animation: gradientFlow 8s ease infinite;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Animated Gradient */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Faded Bottom */
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+/* background: linear-gradient(to bottom, rgba(232, 228, 228, 0.933), transparent);*/
+}
+
+/* Brand Name */
+.brand {
+  font-family: 'cinzel', serif;
+  font-size: 2rem;
+  color: white;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease, text-shadow 0.4s ease;
+}
+.brand:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 15px rgba(255,255,255,0.7);
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background: white;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+.nav-links a:hover {
+  color: #f0fdf4;
+}
+
+/* Toggle Button */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+  z-index: 2000;
+}
+.menu-toggle span {
+  background: white;
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+  transform-origin: center;
+  transition: all 0.5s ease-in-out;
+}
+
+
+/* Toggle Morph Animation */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(90deg) translateY(-8px);
+}
+.menu-toggle.active span:nth-child(2) {
+  transform: rotate(90deg);
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(90deg) translateY(8px);
+}
+
+
+/* MOBILE MENU */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #4ade80, #15803d, #065f46);
+    background-size: 300% 300%;
+    animation: gradientFlow 8s ease infinite;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.68,-0.55,0.27,1.55), opacity 0.4s ease;
+  }
+  .nav-links.show {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-links a {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: linkStagger 0.5s ease forwards;
+  }
+  .nav-links.show a:nth-child(1) { animation-delay: 0.2s; }
+  .nav-links.show a:nth-child(2) { animation-delay: 0.4s; }
+  .nav-links.show a:nth-child(3) { animation-delay: 0.6s; }
+  .nav-links.show a:nth-child(4) { animation-delay: 0.8s; }
+
+  @keyframes linkStagger {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
+/* === Nature Background Animation for Mobile Menu === */
+.nav-links.show::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,\
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">\
+      <g transform="rotate(180, 100, 100)">\
+        <!-- Main leaf shape with serrated edges -->\
+        <path d="M100 200 C70 160, 40 110, 50 60 \
+                 C55 30, 80 10, 100 0 \
+                 C120 10, 145 30, 150 60 \
+                 C160 110, 130 160, 100 200 Z" \
+              fill="url(%23leafGrad)" stroke="%236B8E23" stroke-width="1.5"/>\
+        <!-- Side serrations -->\
+        <path d="M100 0 C98 10, 95 20, 100 30 \
+                 M100 30 C105 40, 95 50, 100 60 \
+                 M100 60 C105 70, 95 80, 100 90 \
+                 M100 90 C105 100, 95 110, 100 120 \
+                 M100 120 C105 130, 95 140, 100 150" \
+              stroke="%238BC34A" stroke-width="0.8"/>\
+        <!-- Side veins -->\
+        <path d="M100 20 C80 40, 70 60, 60 80" stroke="%238BC34A" stroke-width="1"/>\
+        <path d="M100 40 C120 60, 130 80, 140 100" stroke="%238BC34A" stroke-width="1"/>\
+        <path d="M100 70 C80 90, 70 110, 60 130" stroke="%238BC34A" stroke-width="1"/>\
+        <path d="M100 90 C120 110, 130 130, 140 150" stroke="%238BC34A" stroke-width="1"/>\
+        <!-- Main central vein -->\
+        <line x1="100" y1="0" x2="100" y2="200" stroke="%236B8E23" stroke-width="2"/>\
+      </g>\
+      <!-- Gradient shading -->\
+      <defs>\
+        <linearGradient id="leafGrad" x1="0" y1="0" x2="0" y2="1">\
+          <stop offset="0%" stop-color="%239EE86D"/>\
+          <stop offset="50%" stop-color="%239ACD32"/>\
+          <stop offset="100%" stop-color="%236B8E23"/>\
+        </linearGradient>\
+      </defs>\
+    </svg>');
+  background-repeat: repeat;
+  background-size: 100px 200px;
+  opacity: 0;
+  animation: leafFloat 12s linear infinite;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+
+}
+
+@keyframes leafFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.8);
+  }
+}
+
+/* Base leaf animation - all same speed */
+.nav-links.show::before {
+  animation: leafFloat 5s ease-in-out infinite;
+}
+
+/* Different start times to fake randomness */
+.nav-links.show:nth-child(1)::before { animation-delay: 0s; }
+.nav-links.show:nth-child(2)::before { animation-delay: 1s; }
+.nav-links.show:nth-child(3)::before { animation-delay: 2.5s; }
+.nav-links.show:nth-child(4)::before { animation-delay: 3.8s; }
+.nav-links.show:nth-child(5)::before { animation-delay: 0.7s; }
+.nav-links.show:nth-child(6)::before { animation-delay: 4.2s; }
+
+
+
+/*@keyframes leafFloat {
+  from { background-position: 0 0; }
+  to { background-position: 300px 300px; }
+}*/
+/* PRODUCT SHOWCASE SECTION */
+.product-scene {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #d1fae5 0%, #bbf7d0 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Hills background  */
+.hills {
+  position: absolute;
+  bottom: 0;
+  width: 150%;
+  height: 50%;
+/*  background: radial-gradient(circle at 50% 80%, #22c55e 0%, #15803d 70%);*/
+  border-radius: 50% 50% 0 0;
+  animation: hillMove 8s ease-in-out infinite alternate;
+}
+@keyframes hillMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-20px); }
+}
+
+/* Floating leaves */
+.floating-leaf {
+  position: absolute;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/36/Leaf_icon.svg');
+  background-size: cover;
+  opacity: 0.6;
+}
+.leaf1 { width: 50px; height: 50px; top: 10%; left: -10%; animation: floatLeaf 18s linear infinite; }
+.leaf2 { width: 35px; height: 35px; top: 30%; left: -15%; animation: floatLeaf 22s linear infinite 4s; }
+.leaf3 { width: 40px; height: 40px; top: 60%; left: -12%; animation: floatLeaf 20s linear infinite 2s; }
+@keyframes floatLeaf {
+  0% { transform: translateX(0) translateY(0) rotate(0deg); }
+  50% { transform: translateX(60vw) translateY(-30px) rotate(180deg); }
+  100% { transform: translateX(120vw) translateY(0) rotate(360deg); }
+}
+
+/* Content layout */
+.scene-content {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Product frame */
+.product-frame {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+.leaf-frame {
+  position: absolute;
+  inset: -20px;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/36/Leaf_icon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.1;
+  animation: sway 6s ease-in-out infinite;
+}
+.product-img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  animation: popIn 1s ease-out forwards;
+}
+@keyframes sway {
+  0%,100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(2deg) scale(1.05); }
+}
+
+/* Organic details container */
+.details-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 50px 20px 50px 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  animation: fadeUp 1.5s ease-out forwards;
+  max-width: 450px;
+  position: relative;
+}
+.details-container::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4ade80, #16a34a, #4ade80);
+  background-size: 300% 300%;
+  animation: borderFlow 6s infinite linear;
+  z-index: -1;
+}
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Text */
+.details-container h1 {
+  font-size: 2rem;
+  color: #14532d;
+  margin-bottom: 1rem;
+}
+.details-container p {
+  color: #334155;
+  margin-bottom: 1.5rem;
+}
+
+/* CTA button */
+.shop-btn {
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #4ade80, #16a34a, #4ade80);
+  background-size: 300% 300%;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  animation: shimmerBtn 6s infinite linear;
+}
+@keyframes shimmerBtn {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Grass at bottom */
+.grass {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: repeating-linear-gradient(
+    90deg,
+    #15803d,
+    #15803d 2px,
+    #16a34a 2px,
+    #16a34a 4px
+  );
+  animation: grassWave 3s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+@keyframes grassWave {
+  0% { transform: skewX(0deg); }
+  100% { transform: skewX(3deg); }
+}
+
+/* Entry animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .scene-content {
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem; /* to overlap navbar slightly */
+  }
+  .product-frame {
+    width: 300px;
+    height: 300px;
+  }
+  .details-container {
+    text-align: center;
+  }
+}
+
+.footer {
+      position: relative;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .footer-img {
+      width: 100%;
+      height: 250px; /* default height */
+      display: block;
+      object-fit: cover;
+      opacity: 0.6; /* updated opacity */
+    }
+
+    .footer-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .footer h2 {
+      margin-bottom: 10px;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #00ff88;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .social-icons a {
+      color: #fff;
+      font-size: 22px;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+      color: #00ff88;
+    }
+
+    .footer-details {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer-details p {
+      margin: 4px 0;
+    }
+
+    .copyright {
+      margin-top: 10px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* Laptop/Desktop View - decrease image height */
+    @media (min-width: 768px) {
+      .footer-img {
+        height: 350px; /* reduced size for larger screens */
+      }
+    }
+
+    /* Responsive for small screens */
+    @media (max-width: 600px) {
+      .footer h2 {
+        font-size: 20px;
+      }
+      .footer-links {
+        gap: 10px;
+      }
+      .footer-links a {
+        font-size: 14px;
+      }
+      .social-icons a {
+        font-size: 18px;
+      }
+      .footer-details {
+        font-size: 13px;
+      }
+    }
+.nav-links {
+  display: flex;
+  gap: 20px;
+
+  padding: 10px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+.nav-links a:hover {
+  background: linear-gradient(135deg, #4ade80, #15803d, #065f46);
+  border-radius: 4px;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* Dropdown menu hidden by default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  z-index: 1;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+  color: black;
+  padding: 10px 17 px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #e9ecef;
+  border-radius: 4px;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
