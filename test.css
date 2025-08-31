@@ -254,7 +254,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem;
+  padding: 3.5rem;
 }
 
 /* Hills background  */
@@ -589,4 +589,5 @@ body {
   display: block;
 
 }
+
 
