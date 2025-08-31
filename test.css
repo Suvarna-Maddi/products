@@ -254,7 +254,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 5rem;
 }
 
 /* Hills background  */
@@ -587,4 +587,5 @@ body {
 /* Show dropdown on hover */
 .dropdown:hover .dropdown-content {
   display: block;
+
 }
