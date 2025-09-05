@@ -518,6 +518,12 @@ body {
   display: block;
 
 }
+@media (max-width: 768px) {
+  .details-container {
+    margin-top: -20px; /* moves it upward */
+  }
+}
+
 
 
 
