@@ -34,7 +34,15 @@
   
   <a href="#services.html">Our Services</a>
       <a href="#aboutus.html">About Us</a>
-  <a href="#contact.html">Contact Us</a>
+   <a href="#" id="callLink">Contact Us</a>
+
+<script>
+  document.getElementById("callLink").addEventListener("click", function() {
+    // Build the phone number dynamically (hidden from source view)
+    let phone = "+91" + "9014" + "255803";
+    window.location.href = "tel:" + phone;
+  });
+</script>
 </nav>
 
   <div class="menu-toggle" id="menuToggle">
@@ -130,6 +138,7 @@
 <script src="test.js"></script>
 </body>
 </html>
+
 
 
 
