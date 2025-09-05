@@ -520,9 +520,10 @@ body {
 }
 @media (max-width: 768px) {
   .details-container {
-    margin-top: -20px; /* moves it upward */
+    margin-top: -30px; /* moves it upward */
   }
 }
+
 
 
 
