@@ -268,6 +268,8 @@ body {
   content: '';
   position: absolute;
   inset: -5px;
+  display:flex;
+  margin-bottom:50px;
   border-radius: inherit;
   background: linear-gradient(90deg, #4ade80, #16a34a, #4ade80);
   background-size: 300% 300%;
@@ -518,6 +520,7 @@ body {
   display: block;
 
 }
+
 
 
 
