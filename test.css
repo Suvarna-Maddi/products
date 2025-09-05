@@ -493,7 +493,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: white;
+  background-color:transparent;
   min-width: 160px;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
   border-radius: 6px;
@@ -502,7 +502,7 @@ body {
 
 /* Dropdown links */
 .dropdown-content a {
-  color: black;
+  color: white;
   padding: 10px 17 px;
   text-decoration: none;
   display: block;
@@ -518,6 +518,7 @@ body {
   display: block;
 
 }
+
 
 
 
